@@ -33,6 +33,10 @@ exports('cadSetUnitStatus', setUnitStatus)
 
 RegisterNetEvent("SonoranCAD::unitstatus:UpdateStatus")
 AddEventHandler("SonoranCAD::unitstatus:UpdateStatus", function(status)
+    if not IsPlayerAceAllowed(source, "command.setstatus") then
+        print("Access denied.")
+        return
+    end
     local ids = GetIdentifiers(source)
     local identifier = ids[Config.primaryIdentifier]
     setUnitStatus(identifier, status, source)

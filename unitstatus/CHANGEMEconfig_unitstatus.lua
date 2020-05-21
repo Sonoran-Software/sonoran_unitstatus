@@ -18,7 +18,8 @@ local config = {
         ["AVAILABLE"] = 2,
         ["ENROUTE"] = 3,
         ["ON_SCENE"] = 4
-    }
+    },
+    enableAceCheck = true -- restrict command via ace permission
 }
 
 if config.enabled then

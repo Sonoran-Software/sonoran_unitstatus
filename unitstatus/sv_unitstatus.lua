@@ -16,10 +16,11 @@ if pluginConfig.enabled then
 
     function setUnitStatus(apiId, status, player)
         local statusNumber = nil
-        if tonumber(status) ~= nil and status >= 0 and status <= 5 then
+        print(("%s %s %s"):format(apiId, status, player))
+        if tonumber(status) ~= nil and tonumber(status) >= 0 and tonumber(status) <= 5 then
             statusNumber = tonumber(status)
         else
-            statusNumber = tonumber(pluginConfig.statusCodes[status])
+            statusNumber = tonumber(pluginConfig.statusCodes[string.upper(status)])
         end
         assert(statusNumber ~= nil, ("Status %s was not found in config"):format(status))
         local payload = {{["apiId"] = apiId, ["status"] = statusNumber}}
@@ -35,8 +36,9 @@ if pluginConfig.enabled then
 
     RegisterNetEvent("SonoranCAD::unitstatus:UpdateStatus")
     AddEventHandler("SonoranCAD::unitstatus:UpdateStatus", function(status)
-        if not IsPlayerAceAllowed(source, "command.setstatus") then
-            print("Access denied.")
+        local source = source
+        if not IsPlayerAceAllowed(source, "command.setstatus") and pluginConfig.enableAceCheck then
+            TriggerClientEvent("chat:addMessage", source, {args = {"^0[ ^1Error ^0] ", "Access denied."}})
             return
         end
         local ids = GetIdentifiers(source)

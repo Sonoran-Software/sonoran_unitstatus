@@ -16,7 +16,7 @@ if pluginConfig.enabled then
 
     function setUnitStatus(apiId, status, player)
         local statusNumber = nil
-        print(("%s %s %s"):format(apiId, status, player))
+        debugLog(("%s %s %s"):format(apiId, status, player))
         if tonumber(status) ~= nil and tonumber(status) >= 0 and tonumber(status) <= 5 then
             statusNumber = tonumber(status)
         else

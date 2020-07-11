@@ -1,7 +1,9 @@
 # sonoran_unitstatus
-SonoranCAD Unit Status Plugin
+This plugin allows you to change a unit's status in the CAD.
 
-## Install
+## Installation
+
+[Click to view the installation guide.](https://info.sonorancad.com/integration-plugins/integration-plugins/available-plugins/unit-status)
 
 - Copy folder to your `sonorancad/plugins` folder. 
 - Modify configuration found in `config_unitstatus.dist.lua` and copy to a `config_unitstatus.lua` file.

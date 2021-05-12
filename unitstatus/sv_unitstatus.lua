@@ -23,7 +23,7 @@ if pluginConfig.enabled then
             statusNumber = tonumber(pluginConfig.statusCodes[string.upper(status)])
         end
         assert(statusNumber ~= nil, ("Status %s was not found in config"):format(status))
-        local payload = {{["apiId"] = apiId, ["status"] = statusNumber}}
+        local payload = {{["apiId"] = apiId, ["status"] = statusNumber, ["serverId"] = Config.serverId}}
         performApiRequest(payload, "UNIT_STATUS", function(res, success)
             TriggerEvent("SonoranCAD::unitstatus:StatusUpdate", apiId, statusNumber, success)
             if player ~= nil then
